@@ -16,6 +16,7 @@ echo '4)Grails stack'
 echo '5)Mysql stack'
 echo '6)PostgreSQL stack'
 echo '7)LAMP stack'
+echo '8)Subversion stack'
 }
 
 user_input () {
@@ -27,6 +28,7 @@ echo '4)Grails stack'
 echo '5)Mysql stack'
 echo '6)PostgreSQL stack'
 echo '7)LAMP stack'
+echo '8)Subversion stack'
 read stack
 do_work $stack
 }
@@ -61,6 +63,10 @@ cd postgresql-stack
 cd lamp-stack
 ./build-lamp-stack.sh
 ;;
+8)
+cd subversion-stack
+./build-subversion-stack.sh $2 $3
+;;
 *)
 echo 'Wrong selection'
 exit 2
@@ -68,9 +74,9 @@ exit 2
 esac
 }
 
-if [ $# -ne 1 ]; then
+if [ $# -ne 1 -a $# -ne 3 ]; then
   user_input
 else
-  do_work $1
+  do_work $1 $2 $3
 fi
 
